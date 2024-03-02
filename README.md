@@ -7,7 +7,7 @@ Including budget forecasting, financial health, loan default prediction, etc.
 
 Our target is to predict the companies’ financial data points for the last (closest to today) reported quarter. Each quarter in the dataset is represented by 9 financial data points such as TOTAL_ASSETS, TOTAL_LIABILITIES, EBITDA, etc. and the quarter indicator is the prefix (Q0, Q1, … Q10) where the “0” indicates the most recent quarter in the dataset.
 
-### Data reference
+### Data Reference
 
 ```
 @misc{financial-performance-prediction,
@@ -19,7 +19,8 @@ url = {https://kaggle.com/competitions/financial-performance-prediction}
 }
 ```
 
-## Data Prepare
+## Data Describe
+
 
 
 
