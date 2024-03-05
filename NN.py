@@ -166,11 +166,11 @@ for target in targets_names:
     X_train_tensor = torch.tensor(X_train, dtype=torch.float32).to(device)
     y_train_tensor = torch.tensor(y, dtype=torch.float32).to(device)
     dataset = TensorDataset(X_train_tensor, y_train_tensor)
-    dataloader = DataLoader(dataset, batch_size=1024, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=256, shuffle=True)
 
     model = RegressionModel(X_train.shape[1], 1).to(device)
     criterion = nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-5)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)
 
     losses = []
 
@@ -194,6 +194,7 @@ for target in targets_names:
     plt.ylabel('Loss')
     plt.title('Training Loss Over Epochs')
     plt.legend()
+    plt.savefig(f'ResultIMG/{target}LossCurve.png')
     plt.show()
 
     # Prediction and R2 score calculation
