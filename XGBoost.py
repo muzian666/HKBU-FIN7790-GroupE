@@ -71,10 +71,16 @@ test.drop(targets_names, axis = 1, inplace = True)
 targets = train[targets_names].copy()
 train.drop(targets_names, axis = 1, inplace = True)
 
-additional_columns = ['Id', 'industry', 'fullTimeEmployees', 'auditRisk', 'boardRisk', 'compensationRisk', 'shareHolderRightsRisk', 'overallRisk', 'trailingPE', 'forwardPE', 'floatShares', 'sharesOutstanding', 'trailingEps', 'forwardEps', 'targetHighPrice', 'targetLowPrice', 'targetMeanPrice', 'targetMedianPrice', 'recommendationMean', 'numberOfAnalystOpinions', 'totalCash', 'totalCashPerShare', 'ebitda', 'totalDebt', 'totalRevenue', 'revenuePerShare', 'freeCashflow', 'operatingCashflow', 'revenueGrowth', 'financialCurrency']
+# additional_columns = ['Id', 'industry', 'fullTimeEmployees', 'auditRisk', 'boardRisk', 'compensationRisk', 'shareHolderRightsRisk', 'overallRisk', 'trailingPE', 'forwardPE', 'floatShares', 'sharesOutstanding', 'trailingEps', 'forwardEps', 'targetHighPrice', 'targetLowPrice', 'targetMeanPrice', 'targetMedianPrice', 'recommendationMean', 'numberOfAnalystOpinions', 'totalCash', 'totalCashPerShare', 'ebitda', 'totalDebt', 'totalRevenue', 'revenuePerShare', 'freeCashflow', 'operatingCashflow', 'revenueGrowth', 'financialCurrency']
+# additional_columns = ['Q6_TOTAL_LIABILITIES_AND_EQUITY']
+
+# additional_columns = ['Id']
+
+additional_columns = []
 for i in range(1,11):
-#     additional_columns.append(f"Q{i}_TOTAL_LIABILITIES_AND_EQUITY")
-    additional_columns.append(f"Q{i}_fiscal_year_end")
+    additional_columns.append(f"Q{i}_TOTAL_LIABILITIES_AND_EQUITY")
+    additional_columns.append(f"Q{i}_DEPRECIATION_AND_AMORTIZATION")
+#     additional_columns.append(f"Q{i}_fiscal_year_end")
 #     additional_columns.append(f"Q{i}_TOTAL_CURRENT_ASSETS")
 #     additional_columns.append(f"Q{i}_TOTAL_NONCURRENT_ASSETS")
 #     additional_columns.append(f"Q{i}_TOTAL_CURRENT_LIABILITIES")
@@ -83,7 +89,7 @@ for i in range(1,11):
 test.drop(additional_columns, axis=1, inplace=True)
 train.drop(additional_columns, axis=1, inplace=True)
 
-model = XGBRegressor(eta= 0.01, max_depth= 20, n_estimators= 500, device='cuda')
+model = XGBRegressor(eta= 0.01, max_depth=10, n_estimators=500, device='cuda')
 
 print('Cross validation R2 scores for each target:\n')
 cross_val_score_results = {}
@@ -109,5 +115,5 @@ for target in preds:
     sub[target] = preds[target]
 sub.head()
 
-sub.to_csv('submission_1_ML.csv', index = False)
+sub.to_csv('submission_2_ML.csv', index = False)
 print("Finished!")
