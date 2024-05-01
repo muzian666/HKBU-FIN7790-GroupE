@@ -10,3 +10,4 @@ report = ProfileReport(df, title='Financial Statement')
 report.to_file("Financial_Statement_analysis.html")
 
 
+print()
